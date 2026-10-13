@@ -48,3 +48,63 @@ def delete_entry(filename):
         print("Invalid number.")
 
 
+def main():
+    filename = "diary.txt"
+
+    while True:
+        print("==================================")
+        print(f"Current diary file: {filename}")
+        print("1. Add entry")
+        print("2. Print all entries")
+        print("3. Print entries by date")
+        print("4. Load a different diary file")
+        print("5. Delete an entry")
+        print("6. Quit")
+        print("==================================")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            entered_date = input("\n" + "Date (YYYY-MM-DD, press ENTER for today): ")
+            
+            if entered_date == "":
+                entered_date = date.now().strftime(diary.date_format) # https://docs.python.org/3/library/datetime.html#datetime.date.strftime
+
+            elif not diary.is_valid_date(entered_date):
+                print("\n" + "Invalid date. Please use the format YYYY-MM-DD.")
+                continue
+
+            entry_text = input("Write your entry: ")
+            diary.add_entry(filename, entered_date, entry_text)
+            print("Entry saved.")
+        
+        elif choice == "2":
+            print("\n")
+            print_entries(diary.read_entries(filename))
+
+        elif choice == "3":
+            entered_date = ask_for_date()
+            print("\n")
+            print_entries(diary.filter_entries(filename, entered_date))
+
+        elif choice == "4":
+            print("\n")
+            filename = input("Enter the diary file name: ")
+            print(f"Now using {filename}")
+
+        elif choice == "5":
+            print("\n")
+            delete_entry(filename)
+
+        elif choice == "6":
+            print("\n" + "Goodbye!")
+            break
+
+        else:
+            print("\n" + "Invalid option. Please choose 1-5.")
+
+        return_to_menu()
+
+
+if __name__ == "__main__":
+    main()
