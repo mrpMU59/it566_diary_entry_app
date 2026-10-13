@@ -52,3 +52,10 @@ def get_today():
     return str(date.today()) # https://docs.python.org/3/library/datetime.html#datetime.date.today
 
 
+""" Delete a specific entry. """
+def delete_entry(filename, entry_number):
+    entries = read_entries(filename)
+    entries.pop(entry_number - 1) # https://docs.python.org/3/builtins/stdtypes.html#list.pop
+    with open(filename, "w") as file:
+        for entry in entries:
+            file.write(entry + "\n")
