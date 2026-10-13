@@ -21,3 +21,18 @@ def add_entry(filename, entry_text, entry_date):
         file.write(f"{entry_date} | {entry_text}\n")
 
 
+""" Return all entries from the diary file as a list of lines. """
+def read_entries(filename):
+    entries = []
+    try:
+        with open(filename, "r") as file: # Computer Scripting Techniques with Python (1st ed.), Ch 16.1.1
+            for line in file:
+                line = line.strip() # https://docs.python.org/3/builtins/stdtypes.html#str.strip
+                if line != "":
+                    entries.append(line)
+
+    except FileNotFoundError:
+        pass
+    
+    return entries
+
