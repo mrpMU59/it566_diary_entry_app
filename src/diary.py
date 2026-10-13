@@ -11,7 +11,7 @@ def is_valid_date(entry_date):
     try:
         date.strptime(entry_date, date_format) # https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
         return True
-    except ValueError:
+    except ValueError: # https://docs.python.org/3/builtins/exceptions.html#ValueError
         return False
 
 
@@ -31,7 +31,7 @@ def read_entries(filename):
                 if line != "":
                     entries.append(line)
 
-    except FileNotFoundError:
+    except FileNotFoundError: # https://docs.python.org/3/builtins/exceptions.html#FileNotFoundError
         pass
     
     return entries
