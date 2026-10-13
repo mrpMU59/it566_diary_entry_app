@@ -47,3 +47,8 @@ def filter_entries(filename, entry_date):
     return matching_entries
 
 
+""" Return today's date as YYYY-MM-DD. """
+def get_today():
+    return str(date.today()) # https://docs.python.org/3/library/datetime.html#datetime.date.today
+
+
