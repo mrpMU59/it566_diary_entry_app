@@ -6,12 +6,18 @@ from datetime import date  # https://docs.python.org/3/library/datetime.html#dat
 date_format = "%Y-%m-%d"
 
 
-""" Returns True of the text is a valid date in YYYY-MM-DD format."""
+""" Returns True if the text is a valid date in YYYY-MM-DD format. """
 def is_valid_date(entry_date):
     try:
         date.strptime(entry_date, date_format) # https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
         return True
     except ValueError:
         return False
+
+
+""" Add one entry as a new line in the file. """ # Computer Scripting Techniques with Python (1st ed.), Ch 16.1.1
+def add_entry(filename, entry_text, entry_date): 
+    with open(filename, "a") as file: 
+        file.write(f"{entry_date} | {entry_text}\n")
 
 
