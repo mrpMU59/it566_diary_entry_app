@@ -28,3 +28,23 @@ def return_to_menu():
     input("\nPress Enter to return to the menu.")
 
 
+""" Show numbered entries and delete the one the user picks. """
+def delete_entry(filename):
+    entries = diary.read_entries(filename) #reference read_entries from diary.py
+    
+    if not entries:
+        print("No entries to delete.")
+        return
+
+    for entry_number, entry in enumerate(entries, start=1): # https://docs.python.org/3/builtins/functions.html#enumerate
+        print(f"{entry_number}. {entry}")
+
+    choice = input("Enter the number of the entry to delete: ")
+    if choice.isdigit() and 1 <= int(choice) <= len(entries):
+        diary.delete_entry(filename, int(choice)) # reference delete_entry from diary.py
+        print("Entry deleted.")
+
+    else:
+        print("Invalid number.")
+
+
