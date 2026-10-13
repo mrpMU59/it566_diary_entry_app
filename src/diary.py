@@ -36,3 +36,14 @@ def read_entries(filename):
     
     return entries
 
+
+""" Return specifc entries by the given date. """
+def filter_entries(filename, entry_date):
+    entries = read_entries(filename)
+    matching_entries = []
+    for entry in entries:
+        if entry.startswith(entry_date + ":"):  # https://docs.python.org/3/builtins/stdtypes.html#str.startswith
+            matching_entries.append(entry)
+    return matching_entries
+
+
