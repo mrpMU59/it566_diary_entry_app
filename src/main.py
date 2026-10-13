@@ -21,3 +21,10 @@ def ask_for_date():
             return entered_date
 
         print("Invalid date. Please use the format YYYY-MM-DD.")
+
+
+""" Wait for the user before showing the menu again. """
+def return_to_menu():
+    input("\nPress Enter to return to the menu.")
+
+
